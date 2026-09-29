@@ -57,8 +57,11 @@ create policy "pedidos panel lectura" on public.pedidos for select to anon, auth
 drop policy if exists "pedidos panel actualizacion" on public.pedidos;
 create policy "pedidos panel actualizacion" on public.pedidos for update to anon, authenticated using (true) with check (true);
 
+drop policy if exists "pedidos panel eliminacion" on public.pedidos;
+create policy "pedidos panel eliminacion" on public.pedidos for delete to anon, authenticated using (true);
+
 grant select on public.categorias, public.productos to anon, authenticated;
-grant insert, select, update on public.pedidos to anon, authenticated;
+grant insert, select, update, delete on public.pedidos to anon, authenticated;
 grant update on public.productos to anon, authenticated;
 
 insert into public.categorias (nombre, slug) values
